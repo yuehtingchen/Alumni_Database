@@ -29,7 +29,6 @@ Backend:
 	- School name to location
   
 # Timeline
----
 ## Alumni Map prototype 
 ### frontend:
 	- layout: 2 weeks
@@ -46,7 +45,6 @@ Backend:
 	- finish page: 1 week
 	- feedback & edit: 1 week
 	- launch!!!!!! wohooooooooo~~~~
-
 
 2/8 Map layout (Alice & Roy)
 2/15 Database outline (Alice & Roy)
