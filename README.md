@@ -53,4 +53,4 @@
 - 3/15 Integrate stage 2 (Alice & Roy)
 - 3/22 Finish prototype & ask for feedback at TFG
 - 4/-- Data managing
-- 5/-- Tweak & Launch! yay
+- 5/-- Tweak & Launch! oh yeh~
