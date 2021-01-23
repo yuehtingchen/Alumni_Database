@@ -1,4 +1,4 @@
-# AlumniDatabase
+# Alumni Database
 ## Data
 ### Person
 - Name
