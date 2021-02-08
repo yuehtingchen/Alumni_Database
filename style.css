@@ -1,0 +1,39 @@
+* {
+    /*border: 1px solid black; */
+    box-sizing: border-box;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.header{
+    text-align: center;
+    padding: 3px;
+}
+nav {
+    display: flex;
+    padding: 20px;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+nav a:hover {
+    color: grey;
+    text-decoration: underline;
+}
+
+
+.left-link {
+    flex: 1 1;
+    display: block;
+}
+.right-link{
+    display: block;
+}
+iframe {
+    width: 100%; 
+    height: 750px; 
+    display: block;
+}
