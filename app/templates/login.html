@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <title>Alumni Map</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Sign In</h1>
+    </div>
+    <div align="center">
+        <form action="" method="post" nonvalidate>
+            <p>
+                Enter password: {{ form.password(size=32) }}
+                <span>{{form.submit()}}</span>
+            </p>
+            <p>
+                {% if error %}
+                <span style="color: red;">{{ error }}</span>
+                {% endif %}
+                {% for e in form.password.errors %}
+                <span style="color: red;">{{ e }}</span>
+                {% endfor %}
+            </p>
+        </form>
+    </div>
+
+</body>
+</html>

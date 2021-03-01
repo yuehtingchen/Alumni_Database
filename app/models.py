@@ -1,19 +1,20 @@
-from flask import Flask
+from app import db, login
+from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy_utils import ChoiceType
-from flask_migrate import Migrate
-from datetime import datetime
-import os
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+class User(UserMixin, db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	password_hash = db.Column(db.String(120))
 
-class User(db.Model):
+	def check_password(self, password):
+		return check_password_hash(self.password_hash, password)
+
+	def set_password(self, password):
+		self.password_hash = generate_password_hash(password)
+
+
+class Student(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(64), index=True, unique=True)
 	degree = db.Column(db.String(32))
@@ -24,7 +25,7 @@ class User(db.Model):
 	school_name = db.Column(db.String(128), db.ForeignKey('school.name'))
 
 	def __repr__(self):
-		return '<User {}>'.format(self.name)
+		return '<Student {}>'.format(self.name)
 
 class School(db.Model):
 	longitude = db.Column(db.Float, primary_key=True)
@@ -33,8 +34,12 @@ class School(db.Model):
 	city = db.Column(db.String(32), index=True)
 	country = db.Column(db.String(32), index=True)
 
-	alumni = db.relationship('User', backref = 'school', lazy = 'dynamic')
+	alumni = db.relationship('Student', backref = 'school', lazy = 'dynamic')
 
 	def __repr__(self):
 		return '<School {}>'.format(self.name)
+
+@login.user_loader
+def load_user(user_id):
+	return User.query.get(user_id)
 
