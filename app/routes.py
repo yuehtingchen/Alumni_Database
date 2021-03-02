@@ -3,6 +3,9 @@ from app.models import User, School, Student
 from flask_login import current_user, login_user, logout_user, login_required
 from app import app, db
 from app.forms import LoginForm
+import os
+
+API_KEY = os.environ.get("API_KEY")
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -25,7 +28,7 @@ def login():
 @app.route('/index')
 @login_required
 def index():
-	return render_template('index.html')
+	return render_template('index.html', API_KEY=API_KEY)
 
 @app.route('/logout')
 @login_required

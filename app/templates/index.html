@@ -6,27 +6,25 @@
     <link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
-    <script type="{{url_for('static', filename='index.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='index.js')}}"></script>
     <title>Alumni Map</title>
 </head>
 <body>
     <div class="header">
         <h1>Alumni Map</h1>
     </div>
-<nav>
-    <div class="left-link">
-        <a href="{{url_for('index')}}">Home</a>
-    </div>
-    <div class="right-link">
-        <a href="{{url_for('logout')}}">Logout</a>
-    </div>
-</nav>
-<div align="center" id="map">
+    <nav>
+        <div class="left-link">
+            <a href="{{url_for('index')}}">Home</a>
+        </div>
+        <div class="right-link">
+            <a href="{{url_for('logout')}}">Logout</a>
+        </div>
+    </nav>
+    <div align="center" id="map"></div>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key={{API_KEY}}&callback=initMap&libraries=&v=weekly"
       async
     ></script>
-</div>
-
 </body>
 </html>
