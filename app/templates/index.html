@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <script type="{{url_for('static', filename='index.js')}}"></script>
     <title>Alumni Map</title>
 </head>
 <body>
@@ -20,9 +21,11 @@
         <a href="{{url_for('logout')}}">Logout</a>
     </div>
 </nav>
-<div align="center">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d85552.13660043557!2d129.71566690380337!3d62.044312099942175!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2stw!4v1612701363723!5m2!1sen!2stw"> 
-    </iframe>
+<div align="center" id="map">
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
 </div>
 
 </body>

@@ -32,7 +32,8 @@ nav a:hover {
 .right-link{
     display: block;
 }
-iframe {
+
+#map {
     width: 100%; 
     height: 750px; 
     display: block;
