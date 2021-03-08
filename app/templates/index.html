@@ -6,7 +6,45 @@
     <link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="{{url_for('static', filename='index.js')}}"></script>
+<!--     <script type="text/javascript"
+         src="{{ url_for('static', filename='index.js') }}"></script> -->
+    <script type="text/javascript">
+        
+    function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 3,
+        center: { lat: 32, lng: 121 },
+        });
+        // Create an array of alphabetical characters used to label the markers.
+        const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        // Add some markers to the map.
+        // Note: The code uses the JavaScript Array.prototype.map() method to
+        // create an array of markers based on a given "locations" array.
+        // The map() method here has nothing to do with the Google Maps API.
+        const markers = locations.map((location, i) => {
+        return new google.maps.Marker({
+        position: location,
+        label: labels[i % labels.length],
+        });
+        });
+        // Add a marker clusterer to manage the markers.
+        new MarkerClusterer(map, markers, {
+        imagePath:
+        "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+        });
+
+    }
+
+    //create location of schools
+    var locations = [];
+    "{% for s in schools %}"
+    var tpl = {lat: parseInt("{{s.longitude}}", 10), lng: parseInt("{{s.latitude}}", 10)};
+    console.log("{{ s.longitude }} {{ s.latitude }}");
+    locations.push(tpl);
+    "{% endfor %}"
+
+    </script>
+    <script src="https://unpkg.com/@googlemaps/markerclustererplus/dist/index.min.js"></script>
     <title>Alumni Map</title>
 </head>
 <body>
@@ -21,9 +59,10 @@
             <a href="{{url_for('logout')}}">Logout</a>
         </div>
     </nav>
-    <div align="center" id="map"></div>
+    <div id="map"></div>
+   <!--  Async script executes immediately and must be after any DOM elements used in callback. -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key={{API_KEY}}&callback=initMap&libraries=&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=&v=weekly"
       async
     ></script>
 </body>

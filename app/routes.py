@@ -28,7 +28,8 @@ def login():
 @app.route('/index')
 @login_required
 def index():
-	return render_template('index.html', API_KEY=API_KEY)
+	schools = School.query.all()
+	return render_template('index.html', API_KEY=API_KEY, schools=schools)
 
 @app.route('/logout')
 @login_required
